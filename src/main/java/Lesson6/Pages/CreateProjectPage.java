@@ -25,10 +25,15 @@ public class CreateProjectPage extends BaseView{
 
     @FindBy(xpath = "//span[@class='select2-arrow']/..")
     public WebElement OrganisationNameSearch;
+    public By OrganisationNameSearchLocator = By.xpath("//span[@class='select2-arrow']/..");
 
-    public CreateProjectPage fillOrganisationSearch(String organisationName) throws InterruptedException {
+    public CreateProjectPage fillOrganisationSearch(String organisationName) {
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-overlay")));
         OrganisationNameSearch.click();
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='\"Континент+\"']")));
         OrganisationNameSearch.sendKeys(organisationName);
+        webDriverWait.until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Все орг')]")));
         OrganisationNameSearch.sendKeys(Keys.ENTER);
         return this;
     }
@@ -65,11 +70,18 @@ public class CreateProjectPage extends BaseView{
         return this;
     }
 
-//    @FindBy(name = "crm_project[contactMain]")
+//    @FindBy(xpath = "//div[contains(@id, 'contactMain')]/a")
 //    public WebElement mainContact;
 //
-//    public CreateProjectPage selectMainContact(String mainContactName) {
-//        new Select (mainContact).selectByVisibleText(mainContactName);
+//    public CreateProjectPage selectMainContact(String mainContactName) throws InterruptedException {
+//        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-overlay")));
+//        Thread.sleep(2000);
+//        mainContact.click();
+//        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='1 1']")));
+//        OrganisationNameSearch.sendKeys(mainContactName);
+//        webDriverWait.until(
+//                ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Иванов')]")));
+//        OrganisationNameSearch.sendKeys(Keys.ENTER);
 //        return this;
 //    }
 
@@ -139,9 +151,9 @@ public class CreateProjectPage extends BaseView{
     @FindBy(xpath = "//button[contains(text(),'Сохранить и закрыть')]")
     public WebElement saveAndCloseButton;
 
-    @FindBy(xpath = "//*[text()='Проект сохранен']")
+    @FindBy(xpath = infoAboutSuccessSavingLocatorProject)
             public WebElement infoAboutSuccessSaving;
 
-    public By infoAboutSuccessSavingLocator = By.xpath("//*[text()='Проект сохранен']");
+    public static final String infoAboutSuccessSavingLocatorProject = "//*[text()='Проект сохранен']";
 
 }

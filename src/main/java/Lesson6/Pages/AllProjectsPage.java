@@ -18,6 +18,7 @@ public class AllProjectsPage extends BaseView{
     public By createProjectButtonLocator = By.xpath("//a[@class = 'btn back icons-holder-text ']");
 
     public void createProject(){
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-overlay")));
         createProjectButton.click();
         webDriverWait.until(
                 ExpectedConditions.presenceOfElementLocated(new CreateProjectPage(driver).projectNameInputLocator));

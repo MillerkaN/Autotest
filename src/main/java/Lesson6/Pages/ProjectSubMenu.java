@@ -13,7 +13,7 @@ public class ProjectSubMenu extends BaseView {
     @FindBy(xpath = "//span[text() = 'Все проекты']")
     public WebElement allProjectsButton;
 
-    public void createProject(){
+    public void goToPageAllProjects(){
         allProjectsButton.click();
         webDriverWait.until(
                 ExpectedConditions.presenceOfElementLocated(new AllProjectsPage(driver).createProjectButtonLocator));

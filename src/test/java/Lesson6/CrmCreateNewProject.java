@@ -6,9 +6,10 @@ import Lesson6.Pages.LoginPage;
 import Lesson6.Pages.ProjectSubMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static Lesson6.Configuration.BASE_URL;
+import static Lesson6.Configuration.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 
@@ -21,18 +22,18 @@ public class CrmCreateNewProject extends BaseTest {
 
     @Test
     void createNewProject() throws InterruptedException {
-        new LoginPage(driver).login("Applanatest1", "Student2020!")
+        new LoginPage(driver).login(CRM_LOGIN, CRM_PASSWORD)
                 .navigationMenu.openNavigationMenuItem("Проекты");
-        new ProjectSubMenu(driver).createProject();
+        new ProjectSubMenu(driver).goToPageAllProjects();
         new AllProjectsPage(driver).createProject();
         new CreateProjectPage(driver)
-                .fillProjectNameInput("test165")
+                .fillProjectNameInput("test170")
                 .fillOrganisationSearch("Все орг")
                 .selectBusinessUnitSelect("Research & Development")
                 .selectProjectCurator("Applanatest1 Applanatest1 Applanatest1")
                 .selectProjectManager("Applanatest1 Applanatest1 Applanatest1")
                 .selectManager("Applanatest1 Applanatest1 Applanatest1")
-//                .selectMainContact("Иванов Фёдор")
+                //.selectMainContact("Иванов Иван")
                 .fillPlanningDescription("Планирование")
                 .fillProjectRequirementsManagementDescription("Управление требованиями")
                 .fillProjectDevelopmentDescription("Разработка")
@@ -40,7 +41,7 @@ public class CrmCreateNewProject extends BaseTest {
                 .fillConfigManagement("Управление конфигурацией")
                 .saveAndCloseButton.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(new CreateProjectPage(driver).infoAboutSuccessSavingLocator));
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-overlay")));
         assertThat(new CreateProjectPage(driver).infoAboutSuccessSaving, isDisplayed());
     }
 }
