@@ -13,7 +13,7 @@ import static Lesson6.Configuration.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 
-public class CrmCreateNewProject extends BaseTest {
+public class CrmCreateNewProjectTests extends BaseTest {
 
     @BeforeEach
     public void goToPage(){
@@ -27,7 +27,7 @@ public class CrmCreateNewProject extends BaseTest {
         new ProjectSubMenu(driver).goToPageAllProjects();
         new AllProjectsPage(driver).createProject();
         new CreateProjectPage(driver)
-                .fillProjectNameInput("test170")
+                .fillProjectNameInput("test174")
                 .fillOrganisationSearch("Все орг")
                 .selectBusinessUnitSelect("Research & Development")
                 .selectProjectCurator("Applanatest1 Applanatest1 Applanatest1")

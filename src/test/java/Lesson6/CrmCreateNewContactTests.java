@@ -10,7 +10,7 @@ import static Lesson6.Configuration.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 
-public class CrmCreateNewContact extends BaseTest {
+public class CrmCreateNewContactTests extends BaseTest {
     @BeforeEach
     public void goToPage(){
         driver.get(BASE_URL);
@@ -34,3 +34,4 @@ public class CrmCreateNewContact extends BaseTest {
         assertThat(new CreateContactPage(driver).infoAboutSuccessSaving, isDisplayed());
     }
 }
+
