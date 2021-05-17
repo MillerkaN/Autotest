@@ -1,6 +1,7 @@
 package Lesson6;
 
 import Lesson6.Pages.*;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import static Lesson6.Configuration.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 
+@Feature("Тестирование создания нового контактного лица")
 public class CrmCreateNewContactTests extends BaseTest {
     @BeforeEach
     public void goToPage(){

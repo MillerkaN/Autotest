@@ -4,6 +4,7 @@ import Lesson6.Pages.AllProjectsPage;
 import Lesson6.Pages.CreateProjectPage;
 import Lesson6.Pages.LoginPage;
 import Lesson6.Pages.ProjectSubMenu;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -13,6 +14,7 @@ import static Lesson6.Configuration.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 
+@Feature("Тестирование создания нового проекта")
 public class CrmCreateNewProjectTests extends BaseTest {
 
     @BeforeEach
@@ -21,13 +23,13 @@ public class CrmCreateNewProjectTests extends BaseTest {
     }
 
     @Test
-    void createNewProject() throws InterruptedException {
+    void createNewProject() {
         new LoginPage(driver).login(CRM_LOGIN, CRM_PASSWORD)
                 .navigationMenu.openNavigationMenuItem("Проекты");
         new ProjectSubMenu(driver).goToPageAllProjects();
         new AllProjectsPage(driver).createProject();
         new CreateProjectPage(driver)
-                .fillProjectNameInput("test174")
+                .fillProjectNameInput("test183")
                 .fillOrganisationSearch("Все орг")
                 .selectBusinessUnitSelect("Research & Development")
                 .selectProjectCurator("Applanatest1 Applanatest1 Applanatest1")
