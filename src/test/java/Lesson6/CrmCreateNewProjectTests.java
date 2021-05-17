@@ -1,0 +1,50 @@
+package Lesson6;
+
+import Lesson6.Pages.AllProjectsPage;
+import Lesson6.Pages.CreateProjectPage;
+import Lesson6.Pages.LoginPage;
+import Lesson6.Pages.ProjectSubMenu;
+import io.qameta.allure.Feature;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static Lesson6.Configuration.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
+
+@Feature("Тестирование создания нового проекта")
+public class CrmCreateNewProjectTests extends BaseTest {
+
+    @BeforeEach
+    public void goToPage(){
+        driver.get(BASE_URL);
+    }
+
+    @Test
+    void createNewProject() {
+        new LoginPage(driver).login(CRM_LOGIN, CRM_PASSWORD)
+                .navigationMenu.openNavigationMenuItem("Проекты");
+        new ProjectSubMenu(driver).goToPageAllProjects();
+        new AllProjectsPage(driver).createProject();
+        new CreateProjectPage(driver)
+                .fillProjectNameInput("test183")
+                .fillOrganisationSearch("Все орг")
+                .selectBusinessUnitSelect("Research & Development")
+                .selectProjectCurator("Applanatest1 Applanatest1 Applanatest1")
+                .selectProjectManager("Applanatest1 Applanatest1 Applanatest1")
+                .selectManager("Applanatest1 Applanatest1 Applanatest1")
+                //.selectMainContact("Иванов Иван")
+                .fillPlanningDescription("Планирование")
+                .fillProjectRequirementsManagementDescription("Управление требованиями")
+                .fillProjectDevelopmentDescription("Разработка")
+                .fillTestingDescription("Тестирование")
+                .fillConfigManagement("Управление конфигурацией")
+                .saveAndCloseButton.click();
+
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-overlay")));
+        assertThat(new CreateProjectPage(driver).infoAboutSuccessSaving, isDisplayed());
+    }
+}
+
