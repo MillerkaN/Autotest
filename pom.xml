@@ -26,6 +26,7 @@
     <aspectj.version>1.9.5</aspectj.version>
     <reportVersion.version>2.4.1</reportVersion.version>
     <slf4j-simple.version>1.7.30</slf4j-simple.version>
+    <cucumber.version>6.10.4</cucumber.version>
   </properties>
   <dependencies>
     <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
@@ -70,6 +71,28 @@
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-commons</artifactId>
       <version>1.8.0-M1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide</artifactId>
+      <version>5.21.0</version>
     </dependency>
 
     <dependency>
